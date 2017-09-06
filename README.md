@@ -1,24 +1,44 @@
-# README
+# **Development Setup**
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Step 1: clone the repo
 
-Things you may want to cover:
+> git clone git@gitlab.elapps.com:elitmus/elitmus-campus.git
 
-* Ruby version
+Step 2: Create database user, database, and load the data from a dump
 
-* System dependencies
+> mysql> grant all privileges on organisation. _to 'organisation'@'localhost' identified by 'organisation';
+> mysql>flush privileges;
+> mysql>create database organisation;
 
-* Configuration
+Step 3: Initialize project
 
-* Database creation
+> rake db:migrate
+>
+> rake assets:precompile
 
-* Database initialization
+Step 4: Start services
 
-* How to run the test suite
+> mysql.server start
+# **Development Setup**
 
-* Services (job queues, cache servers, search engines, etc.)
+Step 1: clone the repo
 
-* Deployment instructions
+> git clone git@gitlab.elapps.com:elitmus/elitmus-campus.git
 
-* ...
+Step 2: Create database user, database, and load the data from a dump
+
+> mysql> grant all privileges on organisation. _to 'organisation'@'localhost' identified by 'organisation';
+> mysql>flush privileges;
+> mysql>create database organisation;
+
+Step 3: Initialize project
+
+> rake db:migrate
+>
+> rake assets:precompile
+
+Step 4: Start services
+
+> mysql.server start
+>
+> rails s
