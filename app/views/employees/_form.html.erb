@@ -1,0 +1,53 @@
+<%= form_with(model: employee, local: true) do |form| %>
+  <% if employee.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employee.errors.count, "error") %> prohibited this employee from being saved:</h2>
+
+      <ul>
+      <% employee.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :employee_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :employee_title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :manager %>
+    <%= form.text_field :manager, id: :employee_manager %>
+  </div>
+
+  <%= form.hidden_field :manager_id, id: :manager_id%>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
+<%= javascript_tag do %>
+  window.employees = <%= Employee.names_lookup.delete_if {|p| p['id'] == @employee[:id]}.to_json.html_safe %>;
+<% end %>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script type="text/javascript">
+$(function() {
+
+  $("#employee_manager").autocomplete({
+    source: employees,
+    select: function(event, ui) {
+            setManager(ui.item.id, ui.item.name);
+            }
+    });
+});
+function setManager(id, name){
+console.log("Selected manager:"+name);
+$('#manager_id').val(id);
+}
+</script>
