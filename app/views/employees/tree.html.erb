@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Employees</h1>
+<% Employee.heads.each do |employee| %>
+<%=  nested_employees employee %>
+<% end %>
+<br>
+
+<%= link_to 'New Employee', new_employee_path %>

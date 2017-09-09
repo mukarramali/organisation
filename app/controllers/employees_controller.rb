@@ -62,9 +62,8 @@ class EmployeesController < ApplicationController
   end
 
   def tree
-    @employees = Employee.select(:id, :name, :title, :manager_id)
-    @rows = []
-
+    @employees = Employee.heads
+    render :tree
   end
 
   private
