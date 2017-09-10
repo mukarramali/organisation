@@ -23,7 +23,7 @@
 
   <div class="field">
     <%= form.label :manager %>
-    <%= form.text_field :manager, id: :employee_manager %>
+    <%= form.text_field :manager, id: :employee_manager, autocomplete: :off %>
   </div>
 
   <%= form.hidden_field :manager_id, id: :manager_id%>
@@ -39,6 +39,7 @@
 <script type="text/javascript">
 $(function() {
 console.log(employees);
+
   $("#employee_manager").autocomplete({
     source: employees,
     select: function(event, ui) {

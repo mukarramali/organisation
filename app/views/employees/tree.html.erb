@@ -1,9 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Employees</h1>
+<ol>
 <% Employee.heads.each do |employee| %>
-<%=  nested_employees employee %>
+<li><%=  nested_employees employee %></li>
 <% end %>
+<ol>
 <br>
 
-<%= link_to 'New Employee', new_employee_path %>
+<button class="btn btn-default">
+  <%= link_to 'New Employee', new_employee_path %>
+</button>
